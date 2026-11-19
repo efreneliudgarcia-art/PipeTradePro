@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2A2E33">
+<meta name="description" content="Pipefitting calculator: dimensional math, pipe data, offsets, take-outs, flow and pressure. Works offline.">
+<title>PIPE</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="barlow-condensed-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app" class="app">
+  <header class="bar">
+    <button class="icon-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <h1 class="brand" id="brand">PIPE</h1>
+    <button class="icon-btn" id="tapeBtn" aria-label="Tape"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="14" height="14" rx="7"/><circle cx="10" cy="12" r="2.2"/><path d="M17 12h4v4"/></svg><span class="dot" id="tapeDot" hidden></span></button>
+  </header>
+
+  <section class="blade" id="display" aria-live="polite" aria-label="Display">
+    <div class="blade-top">
+      <span class="label" id="dLabel"></span>
+      <span class="ann" id="dAnn"></span>
+    </div>
+    <div class="blade-main"><output class="main" id="dMain">0.</output></div>
+    <div class="blade-bottom">
+      <span class="unit" id="dUnit"></span>
+      <svg class="ruler" id="dRuler" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+  </section>
+
+  <main class="keypad" id="keypad" aria-label="Keypad"></main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<nav class="drawer" id="drawer" aria-label="Menu" hidden>
+  <div class="drawer-head"><span class="brand" id="drawerBrand">PIPE</span><span class="tagline" id="drawerTag"></span></div>
+  <button data-open="help">Help</button>
+  <button data-open="tape">Tape</button>
+  <button data-open="saved">Saved tapes</button>
+  <button data-open="settings">Settings</button>
+  <button data-open="about">About</button>
+  <button id="installBtn" hidden>Install app</button>
+</nav>
+
+<section class="panel" id="panel" hidden>
+  <header class="bar panel-bar">
+    <button class="icon-btn" id="backBtn" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <h2 id="panelTitle"></h2>
+    <div class="panel-actions" id="panelActions"></div>
+  </header>
+  <div class="panel-body" id="panelBody"></div>
+  <footer class="panel-foot" id="panelFoot" hidden></footer>
+</section>
+
+<dialog id="dialog">
+  <form method="dialog" id="dialogForm">
+    <h3 id="dialogTitle"></h3>
+    <p id="dialogText"></p>
+    <input id="dialogInput" maxlength="25" autocomplete="off" hidden>
+    <menu><button value="cancel" id="dialogCancel">Cancel</button><button value="ok" id="dialogOk" class="primary">OK</button></menu>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status" hidden><span id="toastText"></span><button id="toastAction" hidden></button></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
